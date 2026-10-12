@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Student Task Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📚 Student Task Manager</h1>
+    <button id="themeBtn" type="button" aria-label="Toggle theme">🌓</button>
+  </header>
+
+  <!-- Summary numbers + progress bar -->
+  <div class="stats">
+    <div class="stat"><b id="statTotal">0</b><span>Total</span></div>
+    <div class="stat"><b id="statDone">0</b><span>Completed</span></div>
+    <div class="stat"><b id="statLate">0</b><span>Overdue</span></div>
+  </div>
+  <div class="progress" aria-hidden="true"><div id="bar"></div></div>
+
+  <!-- Add / Edit form (same form is reused for editing) -->
+  <section class="card">
+    <form id="taskForm" novalidate>
+      <div class="full">
+        <label for="title">Title *</label>
+        <input id="title" maxlength="80" placeholder="e.g. Finish chemistry lab report">
+      </div>
+      <div class="full">
+        <label for="desc">Description</label>
+        <textarea id="desc" placeholder="Optional details..."></textarea>
+      </div>
+      <div>
+        <label for="due">Due date</label>
+        <input id="due" type="date">
+      </div>
+      <div>
+        <label for="priority">Priority</label>
+        <select id="priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="full error" id="error" role="alert"></div>
+      <div class="full actions">
+        <button class="btn-primary" id="submitBtn" type="submit">Add task</button>
+        <button id="cancelBtn" type="button" hidden>Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Filters -->
+  <div class="filters">
+    <div><label for="fStatus">Status</label>
+      <select id="fStatus">
+        <option value="all">All</option><option value="active">Pending</option><option value="done">Completed</option>
+      </select></div>
+    <div><label for="fPriority">Priority</label>
+      <select id="fPriority">
+        <option value="all">All</option><option value="high">High</option>
+        <option value="medium">Medium</option><option value="low">Low</option>
+      </select></div>
+    <div><label for="fSort">Sort by</label>
+      <select id="fSort">
+        <option value="due">Due date</option><option value="priority">Priority</option><option value="newest">Newest</option>
+      </select></div>
+  </div>
+
+  <ul id="list"></ul>
+  <div class="actions" style="margin-top:14px">
+    <button id="clearDone" type="button" class="btn-danger">Clear completed</button>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
